@@ -3,7 +3,6 @@ from Twitter import username,hashtag,geoloc
 from Nasa import first_image
 from Github import gt_methods
 from Weather import weather_app
-import os
 #from Crypto import crypto_app
 app = Flask(__name__)
 
@@ -83,11 +82,12 @@ def twitter2(htag):
 
 @app.route("/twitter/location")
 def twitter3():
-    lat = request.args.get("latitude",default="##",type=str)
-    lon = request.args.get("longitude",default="##",type=str)
-    rad = request.args.get("radius",default="##",type=str)
+    lat = request.args.get("latitude",default=None,type=str)
+    lon = request.args.get("longitude",default=None,type=str)
+    rad = request.args.get("radius",default=None,type=str)
     
-    if(lat!= "##" and lon!="##" and rad!="##"):
+    #if(lat!= "##" and lon!="##" and rad!="##" ):
+    if(lat and lon and rad ):
         rad=rad[:len(rad)-2] 
         return geoloc.getbygeo(lat,lon,rad)
 
@@ -109,4 +109,4 @@ def page_not_found(e):
     return Not_found,404
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0',port = int(os.environ['PORT']))
+    app.run(debug=True)
