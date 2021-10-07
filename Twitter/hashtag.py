@@ -10,7 +10,7 @@ api =tweepy.API(auth)
 def getbyhashtag(htag):
     try:
         tweets = api.search_tweets(q="#{htag}")
-        print(type(tweets))
+        
 
     except:
         return
