@@ -16,8 +16,8 @@
 
 ## Section 3 - Twitter
  - TASK 1 DONE
- - TASK 2 IN-PROGRESS
- - TASK 3 IN-PROGRESS
+ - TASK 2 DONE
+ - TASK 3 DONE
 
 ## Section 4 - Crypto
   - TASK 1 DONE(Not hosted)
