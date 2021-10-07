@@ -3,6 +3,7 @@ from Twitter import username,hashtag,geoloc
 from Nasa import first_image
 from Github import gt_methods
 from Weather import weather_app
+import os
 #from Crypto import crypto_app
 app = Flask(__name__)
 
@@ -109,4 +110,4 @@ def page_not_found(e):
     return Not_found,404
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(host='0.0.0.0',port = int(os.environ['PORT']))
