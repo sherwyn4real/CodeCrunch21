@@ -3,6 +3,7 @@ from Twitter import username,hashtag,geoloc
 from Nasa import first_image
 from Github import gt_methods
 from Weather import weather_app
+import os
 #from Crypto import crypto_app
 app = Flask(__name__)
 
