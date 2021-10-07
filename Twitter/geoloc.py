@@ -1,18 +1,45 @@
-import requests
 import tweepy
-import json
+import os
+from dotenv import load_dotenv
 
-auth = tweepy.OAuthHandler('6e9HsAYRq63W3BRk1zViJNRRB', 'NYh34GyNpWtQLkfnBnDSmZHeF0no0yPeh6GAtyvcrx221DQaMJ')
-auth.set_access_token('1263798218338504704-wNRSTbQ1IYyaL0SwzAiK8bJ0mWNMWq','wKBIjy1VPUsnNkovYU6ydBvsWRSeIxJh9RSRfWLQOEFFp')
+load_dotenv()
+Not_found = {'status':404, 'message':"tweets not found"}
+
+auth = tweepy.OAuthHandler(os.getenv('TW_API'),os.getenv('TW_API_SECRET'))
+auth.set_access_token(os.getenv('ACCESS_TOKEN'),os.getenv('ACCESS_TOKEN_SEC'))
 
 api =tweepy.API(auth)
 
 
 def getbygeo(lat,lon,rad):
-    #print(f'{lat},{lon},{rad} km')
-    searched = api.search_tweets(q="Nind nahi aa rahi! Shayad rasta bhatak",geocode = f'{lat},{lon},{rad} km' )
 
-    print(searched)
+    if(lat=='' or lon == '' or rad==''):
+        Not_found,404
+        
+
+    try:
+        #print(f'{lat},{lon},{rad} km')
+        searched = api.search_tweets(q="",geocode=f"{lat},{lon},{rad}km")
+
+        max_tweets = 10
+        output = []
+        for i in range(len(searched)):
+            dic = {}
+            dic['text'] = searched[i].text
+            dic['user_screen_name'] = searched[i].user.screen_name
+            output.append(dic)
+
+            if i == max_tweets:
+                break
+
+            i+=1
+
+        return f'{output}',200
+        
+
+    except:
+        return Not_found,404
 
 
-    return {'status':'ok'},200
+
+    

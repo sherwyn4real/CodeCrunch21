@@ -1,18 +1,36 @@
-import requests
 import tweepy
+import os
 import json
+from dotenv import load_dotenv
 
-auth = tweepy.OAuthHandler('6e9HsAYRq63W3BRk1zViJNRRB', 'NYh34GyNpWtQLkfnBnDSmZHeF0no0yPeh6GAtyvcrx221DQaMJ')
-auth.set_access_token('1263798218338504704-wNRSTbQ1IYyaL0SwzAiK8bJ0mWNMWq','wKBIjy1VPUsnNkovYU6ydBvsWRSeIxJh9RSRfWLQOEFFp')
+load_dotenv()
+auth = tweepy.OAuthHandler(os.getenv('TW_API'),os.getenv('TW_API_SECRET'))
+auth.set_access_token(os.getenv('ACCESS_TOKEN'),os.getenv('ACCESS_TOKEN_SEC'))
 
 api =tweepy.API(auth)
 
 def getbyhashtag(htag):
-    try:
-        tweets = api.search_tweets(q="#{htag}")
-        
+        try:
+                tweets = api.search_tweets(q=f"#{htag}")
+                max_tweets = 9
+                output = []
+                print("len=",len(tweets))
+                for i in range(len(tweets)):
+                        dic={}
+                        status = tweets[i]
 
-    except:
-        return
-        
-getbyhashtag("codeCrunch21")
+                        dic['text'] =status.text
+                        dic['user_screen_name'] =status.user.screen_name
+                        dic['retweet_count'] =status.retweet_count
+                        output.append(dic)
+
+                        if i==max_tweets:
+                                print(i)
+                                break
+                        i+=1
+                return f'{output}',200
+
+        except:
+                return { "status": 404, "message":"tweets not found"},404
+
+

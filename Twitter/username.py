@@ -2,6 +2,7 @@ import tweepy
 import os
 from dotenv import load_dotenv
 
+
 load_dotenv()
 
 auth = tweepy.OAuthHandler(os.getenv('TW_API'),os.getenv('TW_API_SECRET'))
@@ -32,3 +33,4 @@ def getbyusername(uname):
         output['tweets'].append({'created_at':str(status.created_at), 'text':status.text})
 
     return output,200
+
