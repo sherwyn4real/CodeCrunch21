@@ -3,10 +3,10 @@
 ## Tech-Stack used: Python Flask
 
 ## Section 1 - NASA
- -TASK 1 DONE
- -TASK 2 DONE
- -TASK 3 DONE
- -TASK 4 DONE
+ - TASK 1 DONE
+ - TASK 2 DONE
+ - TASK 3 DONE
+ - TASK 4 DONE
 
 
 ## Section 2 - Weather
