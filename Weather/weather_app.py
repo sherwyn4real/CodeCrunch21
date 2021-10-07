@@ -8,12 +8,8 @@ report_error = {
     "message": "weather data not found"
 }
 
-
- 
-
 def search_city(cname):
-   # city = request.args.get('q')  # city name passed as argument
-
+ 
     # call API and convert response into Python dictionary
     url = f'http://api.openweathermap.org/data/2.5/weather?q={cname}&APPID={KEY}&units=metric'
     response = requests.get(url).json()
@@ -28,13 +24,7 @@ def search_city(cname):
             "temp":response["main"]["temp"]
             }
         return output
-        #result=json.dumps(output)
-        #return result
-         
-    # get current temperature and convert it into Celsius
-    #current_temperature = response.get('main', {}).get('temp')
-    #if current_temperature:
-       # current_temperature_celsius = round(current_temperature - 273.15, 2)
+     
        
  #========================================================================
 
@@ -57,8 +47,7 @@ def search_cord_pin(l):
             "longitude": response["coord"]["lon"]
             }
             return output,200
-            #result=json.dumps(output)
-            #return result
+            
     else:
         url=f'http://api.openweathermap.org/data/2.5/weather?zip={l},IN&appid={KEY}&units=metric'
         response = requests.get(url).json()
@@ -76,8 +65,7 @@ def search_cord_pin(l):
             "longitude": response["coord"]["lon"]
             }
             return output,200
-            #result=json.dumps(output)
-            #return result 
+       
            
 
 
