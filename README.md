@@ -33,6 +33,6 @@
 
 
 ## Team Details
--Team Name: 2Stroke
--College: Goa College Of Engineering
--Member names: Sherwyn Anthony Fernandes, Mohammad Saif Farooqui
+- Team Name: 2Stroke
+- College: Goa College Of Engineering
+- Member names: Sherwyn Anthony Fernandes, Mohammad Saif Farooqui
