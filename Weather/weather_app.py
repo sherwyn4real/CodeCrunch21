@@ -50,7 +50,7 @@ def search_cord_pin(l):
             
             return output,200
             
-        elif response.status_code == 400:
+        elif response.status_code in (400):
             return {'status':response.status_code, 'message':'Bad request'}
         else:
            return report_error,response.status_code
