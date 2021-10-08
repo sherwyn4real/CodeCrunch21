@@ -25,7 +25,7 @@ def searchcity(cname):
 def searchcoord():
     lat = request.args.get('latitude', default='#' )
     lon = request.args.get('longitude', default='#' )
-    pincode = request.args.get('pincode',default='#')
+    pincode = request.args.get('pin_code',default='#')
 
     if(pincode=='#'):
         return weather_app.search_cord_pin([lat,lon])
