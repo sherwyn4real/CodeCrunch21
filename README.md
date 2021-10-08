@@ -20,10 +20,10 @@
  - TASK 3 DONE
 
 ## Section 4 - Crypto
-  - TASK 1 DONE(Not hosted)
-  - TASK 2 DONE(Not hosted)
-  - Task 3 IN-PROGRESS
-  - Task 4 IN-PROGRESS
+  - TASK 1 DONE
+  - TASK 2 DONE
+  - Task 3 DONE
+  - Task 4 DONE
 
 ## Section 5 - Github
   - TASK 1 DONE
