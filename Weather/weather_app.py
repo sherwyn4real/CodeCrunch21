@@ -36,10 +36,10 @@ def search_cord_pin(l):
     if(type(l) == list):
         url=f'http://api.openweathermap.org/data/2.5/weather?lat={l[0]}&lon={l[1]}&appid={KEY}&units=metric'
         response = requests.get(url).json()
-        if response.get('cod') == 404:
+        if response["cod"] == 404:
             return report_error,404
         
-        elif response.get('cod') == 400:
+        elif response["cod"] == 400:
             return bad_request,400
         
         else:
