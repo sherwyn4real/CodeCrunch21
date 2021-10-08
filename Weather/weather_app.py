@@ -23,7 +23,7 @@ def search_city(cname):
             "name":response["name"],
             "temp":response["main"]["temp"]
             }
-        return output
+        return output,200
      
        
  #========================================================================
