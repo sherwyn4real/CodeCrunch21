@@ -40,7 +40,7 @@ def search_cord_pin(l):
             return report_error,404
         
         elif response.get('cod') == 400:
-            return bad_request,404
+            return bad_request,400
         
         else:
             output={
