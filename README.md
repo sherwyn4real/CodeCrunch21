@@ -27,9 +27,9 @@
 
 ## Section 5 - Github
   - TASK 1 DONE
-  - TASK 2 IN-PROGRESS
-  - Task 3 DONE(not hosted)
-  - Task 4 IN-PROGRESS
+  - TASK 2 DONE
+  - Task 3 DONE
+  - Task 4 DONE
 
 
 ## Team Details
