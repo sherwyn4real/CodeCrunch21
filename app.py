@@ -4,7 +4,7 @@ from Nasa import first_image
 from Github import gt_methods
 from Weather import weather_app
 import os
-#from Crypto import crypto_app
+from Crypto import crypto_methods
 app = Flask(__name__)
 
 
@@ -36,21 +36,29 @@ def searchcoord():
     else:
         return Bad_request,400
 
+#----------------------------------------------------------#
 
 @app.route("/crypto/coins")
-def xxx():
-    pass
+def getallcoins():
+    return crypto_methods.all_coins()
 
 
 
 @app.route("/crypto/tokens")
-def abc():
-    pass
+def getalltokens():
+    return crypto_methods.all_tokens()
 
 
 @app.route("/crypto/quote/<string:name>")
-def ccc():
-    pass
+def getprice(name):
+    return crypto_methods.ticker_coin(name)
+
+
+@app.route('/crypto/team/<string:name>')
+def getteam(name):
+    return crypto_methods.team(name)
+
+#----------------------------------------------------------#
 
 
 @app.route("/nasa/image-of-month")
@@ -70,6 +78,7 @@ def nasa3(y,m):
 def nasa4(dt):
     return first_image.getepic(dt)
 
+#----------------------------------------------------------#
 
 @app.route("/twitter/user/<string:uname>")
 def twitter1(uname):
@@ -95,19 +104,45 @@ def twitter3():
     else:
         return Bad_request,400
 
+#----------------------------------------------------------#
+
 
 @app.route("/github/user/<string:username>")
 def getprofile(username):
     return gt_methods.getbyusername(username)
 
 
-@app.route("/github/issues/<string:author>/<string:repo>/<string:labels>")
+@app.route("/github/repo/<string:nos>")
+def getrepo(nos):
+    print("nos=",nos)
+    if ',' not in nos:
+        return Not_found,404
+
+    else:
+        loc = nos.index(',')
+        x = nos[:loc]
+        y = nos[loc+1:]
+        return gt_methods.getbystars(x,y)
+
+
+@app.route("/github/issues/<string:author>/<path:repo>/<string:labels>")
 def getissues(author,repo,labels):
     return gt_methods.getissue(author,repo,labels)
 
+
+@app.route("/github/commits/<string:dates>/<path:repo>")
+def getcommits(dates,repo):
+    return gt_methods.getbycommits(dates,repo)
+
+#-------------------------------------------------------------------#
+
 @app.errorhandler(404)
 def page_not_found(e):
+    print("SDfsdf")
     return Not_found,404
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0',port = int(os.environ['PORT']))
+    app.run(debug=True)
+
+
+#app.run(host='0.0.0.0',port = int(os.environ['PORT']))
