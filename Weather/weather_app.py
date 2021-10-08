@@ -3,6 +3,8 @@ import os
 
 KEY = os.getenv('WEAT_API_KEY') #api key
 
+bad_request = {"status":400,"message":"Bad request"}
+
 report_error = {
     "status": 404,
     "message": "weather data not found"
@@ -34,8 +36,12 @@ def search_cord_pin(l):
     if(type(l) == list):
         url=f'http://api.openweathermap.org/data/2.5/weather?lat={l[0]}&lon={l[1]}&appid={KEY}&units=metric'
         response = requests.get(url).json()
-        if response.get('cod') != 200:
+        if response.get('cod') == 404:
             return report_error,404
+        
+        elif response.get('cod') == 400:
+            return bad_request,404
+        
         else:
             output={
             "country":response["sys"]["country"],
